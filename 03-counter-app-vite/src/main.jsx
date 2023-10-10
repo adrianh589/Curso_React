@@ -4,11 +4,12 @@ import ReactDOM from 'react-dom/client';
 // import {FirstApp} from './FirstApp.jsx';
 import './styles.css';
 import {CounterApp} from "./CounterApp.jsx";
+import {FirstApp} from "./FirstApp.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         {/* Desde aca se le mandan los props o propiedades al componente hijo */}
-        {/*<FirstApp/>*/}
-        <CounterApp value={13}></CounterApp>
+        <FirstApp subtitle={"Holi"}/>
+        {/*<CounterApp value={13}></CounterApp>*/}
     </React.StrictMode>
 )

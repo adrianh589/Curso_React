@@ -29,7 +29,7 @@ export function CounterApp({ value }) {
             {/*<button onClick={(event) => handleAdd(event)}>+1</button>*/}
             <button onClick={handleAdd}>+1</button> {/*Es lo mismo que arriba pero mas simplificado*/}
             <button onClick={handleSubstract}>-1</button>
-            <button onClick={handleReset}>Reset</button>
+            <button aria-label={'btn-reset'} onClick={handleReset}>Reset</button>
         </>
     )
 }

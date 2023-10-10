@@ -11,7 +11,7 @@ const suma = (a, b) => a + b;
 export const FirstApp = ({ title, subtitle, name }) => {
     return (
         <>
-            <h1> {title} </h1>
+            <h1 data-testid={'test-title'}> {title} </h1>
             <h2> {subtitle} </h2>
             <code> { JSON.stringify(newMessage) } </code>
             <p> Soy un subtitulo </p>
@@ -33,6 +33,6 @@ FirstApp.propTypes = {
 * */
 FirstApp.defaultProps = {
     title: 'No hay ningún título.',
-    subtitle: 'No hay subtitulo.',
+    // subtitle: 'No hay subtitulo.',
     name: 'Adrian Hoyos'
 }
