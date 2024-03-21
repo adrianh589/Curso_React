@@ -1,5 +1,6 @@
 import {GiftItem} from "./GiftItem.jsx";
-import {useFetchGifs} from "../hooks/useFetchGifs.js"; // Sirve para disparar efectos secundarios
+import {useFetchGifs} from "../hooks/useFetchGifs.js";
+import PropTypes from "prop-types"; // Sirve para disparar efectos secundarios
 
 
 export const GifGrid = ({category}) => {
@@ -23,4 +24,8 @@ export const GifGrid = ({category}) => {
             </div>
         </>
     )
+}
+
+GifGrid.propTypes = {
+    category: PropTypes.string.isRequired
 }

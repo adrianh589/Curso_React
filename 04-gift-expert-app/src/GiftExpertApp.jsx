@@ -2,11 +2,10 @@ import {useState} from "react";
 import {AddCategory, GifGrid} from "./components/index.js";
 
 export const GiftExpertApp = () => {
-    // Cuando necesite informacion, y esa informacion necesita cambiar el HTML, debo pensar en un Hook para cambiar/mantener el estado
-    // NO SE DEBEN PONER CONDICIONALES PARA LOS STATES
-    const [categories, setCategories] = useState(['One Punch']); // Dejar el useState vacio genera undefined
+    const [categories, setCategories] = useState(['One Punch']);
 
     const onAddCategory = (newCategory) => {
+        console.log('Hola, soy el onAddCategory******')
         console.log(newCategory);
         // setCategories([newCategory, ...categories]); // Mi forma
         if (categories.includes(newCategory)) return;
@@ -21,11 +20,11 @@ export const GiftExpertApp = () => {
             {/*  Input  */}
             <AddCategory
                 // setCategories={setCategories}
-                onNewCategory={value => onAddCategory(value)}    // Cuando lleva la palabra ON es porque esta emitiendo algo
+                onNewCategory={value => onAddCategory(value)}
             />
 
             {
-                categories.map((category) => ( // Se puede obviar el return con las llaves
+                categories.map((category) => (
                     <GifGrid key={category} category={category}/>
                 ))
             }
