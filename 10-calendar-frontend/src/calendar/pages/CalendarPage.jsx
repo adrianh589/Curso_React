@@ -2,36 +2,44 @@
  * Paquetes de terceros van de primero
  */
 import { Calendar } from 'react-big-calendar';
-import { localizer, getMessagesES } from '../../helpers';
+import { getMessagesES, localizer } from '../../helpers';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { Navbar } from '../components/Navbar.jsx';
 import { CalendarEvent } from '../components/CalendarEvent.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CalendarModal } from '../components/CalendarModal.jsx';
-import { useUiStore } from '../../hooks/index.js';
+import { useAuthStore, useUiStore } from '../../hooks/index.js';
 import { useCalendarStore } from '../../hooks/useCalendarStore.js';
 import { FabAddNew } from '../components/FabAddNew.jsx';
 import { FabDelete } from '../components/FabDelete.jsx';
 
 export const CalendarPage = () => {
 
-    const { events, setActiveEvent } = useCalendarStore();
+    const { user } = useAuthStore();
+
+    const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
     const { openDateModal } = useUiStore();
-    const [lastView, setLastView] = useState(localStorage.getItem('lastView' || 'week'));
+    const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week' );
 
     const eventStyleGetter = ( event, start, end, isSelected ) => {
         // console.log({event, start, end, isSelected});
+        const isMyEvent = (user.uid === event.user._id) || ( user.uid === event.user.uid );
 
         const style = {
-            backgroundColor: '#347CF7',
+            backgroundColor: isMyEvent ? '#00fd04' : '#ff0000',
             borderRadius: '0px',
             opacity: 0.8,
-            color: 'white'
-        }
+            color: 'black'
+        };
 
-        return style;
+        return { style };
     }
+
+    useEffect( () => {
+        startLoadingEvents();
+    }, [] );
+
 
     const onDoubleClick = (event) => {
         console.log({doubleClick: event});
